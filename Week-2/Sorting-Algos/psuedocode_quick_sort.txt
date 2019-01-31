@@ -1,0 +1,33 @@
+This program sorts the input array using quick sort algorithm
+
+
+
+function quick_sort(arr, starting index, end index)
+	if start < end
+		pindex <-- partition(arr, starting index, end index)
+		qsort(arr, starting index, pindex -1)
+		qsort(arr, pindex + 1, end index)
+
+
+
+function partition(A, starting index, end index)
+
+	pivot <-- A[(start+end)/2]
+
+	iterate the loop over star index and end index
+	i <-- start
+	j <-- end
+
+	loop forever
+		while A[i] < pivot
+			i++
+		end while
+
+		while A[j] > pivot
+			j--
+		end while
+
+		if  i >= j
+			return j
+
+		swap A[i] and A[j]

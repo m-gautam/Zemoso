@@ -1,0 +1,17 @@
+This program sorts the input array using insertion sort algorithm
+
+
+function merge_sort( arr, size )
+	while i < size
+		x <--  arr[i]
+		j <-- i
+	
+		while j > 0  and x < arr[j-1]
+			arr[j] <-- arr[j-1]
+			j-- 
+
+	
+		arr[j] <-- x
+		i++
+
+	end while loop
