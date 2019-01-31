@@ -1,0 +1,12 @@
+This code implements vignere cipher
+
+
+In the main function 
+     	
+   	print prompt "message" 
+    	Take the string of alphabetic characters
+  
+   	Iterartes over string character-wise
+		deal separately for small and capital character
+		increment the ascii value of character by adding value of ascii value of corresponding character
+	
