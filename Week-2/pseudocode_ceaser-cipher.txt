@@ -1,0 +1,15 @@
+This code implements ceaser cipher
+
+
+In the main function 
+     
+	print prompt "key"
+   	Take the number which represent as decipher key
+	
+   	print prompt "message" 
+    	Take the string of alphabetic characters
+  
+   	Iterartes over string character-wise
+		deal separately for small and capital character
+		increment the ascii value of character by adding value of given key
+	

@@ -1,0 +1,51 @@
+This program sorts the input array using merge sort algorithm
+
+
+
+function merge_sort(arr , start, end)
+
+	if start >= end
+		return
+
+	mid <-- (start + end)/2
+
+	merge_sort(A, start, mid)
+	merge_sort(A, mid+1, end)
+
+	Send the array with start and end index to the merge_sort
+	merge_array(A, start, end)
+
+
+
+function merge_array(A, start, end)
+
+	mid <-- (start+end)/2
+	create temp_array for mergig the arrays
+
+	i <-- start
+	j <-- mid+1
+	k <-- start
+	while i <= mid and j <= end
+		if A[i] > A[j]
+			temp_array[k] <-- A[j]
+			j++
+		else
+			temp_array[k] <-- A[i]
+			i++
+		k++
+	end while
+
+	while i <= mid
+		temp_array[k] <-- A[i]
+		i++
+		k++
+	end while
+
+	while j <= end
+		temp_array[k] = A[j]
+		j++
+		k++
+	end while
+
+
+	copy temp_array in 'A' array
