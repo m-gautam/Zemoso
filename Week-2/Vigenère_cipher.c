@@ -3,7 +3,7 @@
 
 // Author : Gautam Meena
 // 29 January 2019
-// Week : 2, Problem : 1
+// Week : 2, Problem : 2
 
 
 
