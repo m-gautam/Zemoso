@@ -8,22 +8,51 @@
 
 
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 
 // limit for the input string size
 #define MAX_INPUT_LENGTH 50
 
-int main(void)
+
+// Helper Functions
+int convert_key(char key[]);
+int get_input(char message[]);
+
+int main(int argc, char* argv[])
 {
-	int key;
-	scanf("%d",&key);
+	if (argc!= 2)
+	{
+		return 1;
+	}
 
+
+	int key, s;
+	key = convert_key(argv[1]);
+
+	// If key is invalid
+	if(key == -1)
+	{
+		return 1;
+	}
+
+	
 	char message[MAX_INPUT_LENGTH];
-	printf("message: ");
-	scanf("%s",message);
 
+	printf("plaintext: ");
+
+	s = get_input(message);
+	
+	// If length of input is exceeded
+	if(s == -1)
+	{
+		return 1; 
+	}
+
+	
+	//printf("%s \n", message);
 	// Encrypting the input	
-	for (int i = 0, s = strlen(message); i < s; i++)
+	for (int i = 0; i < s; i++)
 	{
 		// If character is capital case
 		if (message[i] >= 'A' && message[i] <= 'Z')
@@ -38,6 +67,46 @@ int main(void)
 	}
 	
 	// Prints the cipher text
-	printf("%s\n", message);
+	printf("ciphertext: %s\n", message);
 
+}
+
+
+int get_input(char message[MAX_INPUT_LENGTH]){
+
+	int len = -1;
+	do
+	{
+		len++;
+		scanf("%c", &message[len]);
+
+		if(len > MAX_INPUT_LENGTH)
+		{
+			printf("Don't exceed the size of input string\n");
+			return -1;
+		}
+	}while(message[len] != '\n');
+	message[len] = '\0';
+
+	return len;
+}
+
+// Converting the argument into integer
+int convert_key(char key[]){
+
+	int k = 0;
+	for (int i = 0; i < strlen(key); i++)
+	{
+		if(key[i] >= 48 && key[i] <= 57)
+		{
+			k =  k*10 + (key[i] - 48);
+		}
+
+		else
+		{
+			return -1;
+		}
+	}
+
+	return k;
 }
