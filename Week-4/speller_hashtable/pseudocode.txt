@@ -1,0 +1,69 @@
+function load
+{
+    while (fscanf(file, "%s", word) != EOF)
+    {
+        index = calculate the index considering a as at index '0' 
+        node *cursor = hashtable[key];
+        node *new_node = malloc(sizeof(node));
+
+        copy the word in new node
+        
+	new_node->next = NULL;
+
+        if (hashtable[key] == NULL)
+        {
+            hashtable[key] = new_node;
+        }
+
+        else   
+        {
+            while (cursor->next != NULL)
+            {   
+                cursor = cursor->next;
+            }
+            cursor->next = new_node;
+        }
+        size ++;  // size of dictionary
+    }
+}
+
+
+function check(const char *word)
+{
+    // conditon for words containins apostorphe "'" as character 
+    if (word[0] == '\'') 
+    {
+        return false;
+    }
+
+    int index = tolower(word[0]) - 'a';
+    node *cursor = hashtable[key];
+
+    while(cursor != NULL)
+    {
+        If word exists in dictionary
+            return true;
+        cursor = cursor->next;
+    }
+
+    return false;
+}
+
+
+
+
+function unload
+{
+    for(int i = 0; i < 26; i++)
+    {
+        node* cursor = hashtable[i];
+        while(cursor != NULL)
+        {
+            node *tmp = cursor;
+            cursor = cursor->next;
+            free(tmp);
+        }
+    }
+    return true;
+}
+
