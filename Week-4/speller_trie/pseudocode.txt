@@ -1,0 +1,68 @@
+Function load (dictionary)
+{
+    word = Read dictionary
+    {
+        siz++;
+        node *cursor = root;
+        for (int i = 0, s = strlen(word); i < s; i++)
+        {
+	    call get_index function
+            int k = get_index(word[i]);
+            if (!cursor->children[k])
+            {
+                node *nnode = malloc(sizeof(node));
+                nnode->is_word = false;
+                for (int j = 0; j < N; j++)
+                {
+                    nnode->children[j] = NULL;
+                }
+
+                cursor->children[k] = nnode;
+            }
+            cursor = cursor->children[k];
+        }
+        is_word = true if reached at the end of word 
+    }
+
+}
+
+
+Function check(const char *word)
+{
+    node *cursor = root;
+    for (int i = 0, s = strlen(word); i<s; i++)
+    {
+        int k = get_index(word[i]);
+        if (cursor->children[k] == NULL)
+        {
+            return false;
+        }
+        cursor = cursor->children[k];
+    }
+    // If word found in trie
+    if (cursor->is_word == true && cursor != NULL)
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}
+
+
+
+function unload(node *root)
+{
+    if (root == NULL)
+    {
+        return;
+    }
+    for (int i = 0; i < N; i++)
+    {
+        unload2(root->children[i]);
+    }
+    free(root);
+}
+
+
