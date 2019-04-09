@@ -79,12 +79,12 @@ int maj_element(int arr[], int size, int a)
 
 	}
 
-	if (count1 >= size/2)
+	if (2*count1 >= size)
 	{
 		return a;
 	}
 
-	else if (count2 >= size/2)
+	else if (2*count2 >= size)
 	{
 		return b;
 	}
