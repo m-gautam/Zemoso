@@ -1,105 +1,96 @@
+// A 'majority element' is an element that makes up half or more than half of the items in an array.
+// Write a C function which takes a positive integer array as argument and returns the majority element.
+// If there is no majority element return -1. Do this in O(N) time complexity and O(1) space complexity. 
+// Example : Input : {1,2,5,9,5,9,5,5,5}
+// OutPut : 5
+
+
+// Author : Gautam Meena
+// 15 March 2019
+// Week : 2, Problem : 2
+
 #include <stdio.h>
 #include <stdlib.h>
 
+// Helper functions
+int majority_index(int arr[], int size);
+int maj_element(int arr[], int size, int a);
 
 
-
-void get_input(int arr[], int size);
-
-
-typedef struct node
-{
-	int value;
-	int count = 0;
-	node *next = NULL;	
-}
-node;
-
-node *list = NULL;
-
-
-void ht_create(int n)
-{
-	hash_entry *cursor = hentry;
-	hash_entry *new_entry = malloc(sizeof(hash_entry));
-	new_entry->next = malloc(sizeof(hashtable));
-
-	new_entry->next->key = n;
-	new_entry->next->value = 1;
-
-	if(hentry == NULL)
-	{
-		hentry = new_entry;
-	}
-}
-
-int main(void)
+int main()
 {
 	int size;
 	scanf("%d", &size);
 
 	int arr[size];
-
-	get_input(arr, size);
-
-	ht_create(arr[0]);
-
-	//int ans = majority_element(arr, size);
-}
-
-
-
-void get_input(int arr[], int size)
-{
-	for (int i = 0; i < size; i++)
+	for(int i = 0; i < size; i++)
 	{
 		scanf("%d", &arr[i]);
-		node *nnode = list;
-		nnode = malloc(sizeof(node));
-
-		
-
-
-		if (list == NULL)
-		{
-			nnode->value = arr[i];
-			nnode->count += 1;
-			list = nnode;
-		}
-
-		else
-		{
-			node *cursor = list;
-			while(cursor != NULL)
-			{
-				if (cursor->value == arr[i])
-				{
-					cursor->count++;
-					continue;
-				}
-			}
-
-			nnode->value = arr[i];
-			nnode->count += 1;
-			cursor = nnode;
-
-		}
 	}
+
+	int index = majority_index(arr, size);
+	int ans = maj_element(arr, size, index);
+	printf("%d\n", ans);
 }
 
 
-int majority_element(int arr[], int size)
+// Finding candidates for majority elements
+int majority_index(int arr[], int size)
 {
+	int maj_index = 0, count = 1;
 
-	node *cursor = list;
-
-	int max_count = 0;
-
-	while (cursor != NULL)
+	for (int i = 1; i < size-1; i++)
 	{
-		cursor ->
+		if(arr[maj_index] ==  arr[i])
+		{
+			count++;
+		}
+		else
+		{
+			count--;
+		}
+
+		if (count == 0)
+		{
+			maj_index = i;
+			count = 1;
+		}
+	}
+
+	return arr[maj_index];
+}
+
+// Finding majority elements 
+int maj_element(int arr[], int size, int a)
+{
+	int b = arr[size-1];
+	int count1 = 0, count2 = 0;
+	for (int i = 0; i < size; i++)
+	{
+		if (arr[i] == a)
+		{
+			count1++;
+		}
+
+		else if (arr[i] == b)
+		{
+			count2++;
+		}
 
 	}
 
+	if (count1 >= size/2)
+	{
+		return a;
+	}
 
+	else if (count2 >= size/2)
+	{
+		return b;
+	}
+
+	else
+	{
+		return -1;
+	}
 }
